@@ -84,8 +84,6 @@ def get_docinfo(doc=None, doctype=None, name=None):
 
 	add_comments(doc, docinfo)
 	add_chat_topics(doc, docinfo)
-	# Ensure doc.name is always a string to avoid type issues when its int and we need it as string in other function
-	doc.name = str(doc.name)
 	docinfo.update(
 		{
 			"doctype": doc.doctype,
@@ -97,7 +95,7 @@ def get_docinfo(doc=None, doctype=None, name=None):
 			"versions": get_versions(doc),
 			"assignments": get_assignments(doc.doctype, doc.name),
 			"permissions": get_doc_permissions(doc),
-			"shared": frappe.share.get_users(doc.doctype, doc.name),
+			"shared": frappe.share.get_users(doc.doctype, str(doc.name)),
 			"views": get_view_logs(doc.doctype, doc.name),
 			"energy_point_logs": get_point_logs(doc.doctype, doc.name),
 			"additional_timeline_content": get_additional_timeline_content(doc.doctype, doc.name),
