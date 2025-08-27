@@ -46,7 +46,7 @@ app_include_js = ['clefincode_chat.bundle.js' , 'override.bundle.js'] if is_frap
 page_js ={"chat-portal" : "public/js/chat_portal/chat_portal.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Contact" : "public/js/contact/contact.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -234,8 +234,4 @@ sounds = [
 
 webhooks = [
     {"from_route": "/telegram/webhook", "to_method": "clefincode_chat.webhook.telegram_webhook"}
-]
-
-website_route_rules = [
-	{"from_route": "/chat-history/<contact>", "to_route": "chat_history"},
 ]

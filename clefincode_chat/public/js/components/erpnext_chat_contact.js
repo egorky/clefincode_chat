@@ -106,7 +106,6 @@ export default class ChatContact {
             </div>
             <div class="chat-icons">
                 ${icons_html}
-                ${this.profile.whatsapp_contact ? `<div class="icon chat-history-icon" title="Chat History"><svg class="icon icon-lg"><use href="#icon-storage"></use></svg></div>` : ''}
                 ${this.profile.contact_details.length > 1 ? this.get_contact_options() : "<div style='width:40px'></div>"}
             </div>
         </div>
@@ -165,7 +164,7 @@ export default class ChatContact {
 
   click_on_contact(e) {
     const contact_element = $(e).closest(
-        ".chat-icon, .Chat, .mail-icon, .Email, .whatsapp-icon, .WhatsApp, .instagram-icon, .Instagram, .messenger-icon, .Messenger, .telegram-icon, .Telegram, .chat-contact, .options-icon, .chat-history-icon"
+        ".chat-icon, .Chat, .mail-icon, .Email, .whatsapp-icon, .WhatsApp, .instagram-icon, .Instagram, .messenger-icon, .Messenger, .telegram-icon, .Telegram, .chat-contact, .options-icon"
     );
 
     // If the element is the dropdown menu, return early
@@ -189,8 +188,6 @@ export default class ChatContact {
           this.handle_messenger_icon_click(contact_element);
         } else if (contact_element.hasClass("telegram-icon") || contact_element.hasClass("Telegram")) {
           this.handle_telegram_icon_click(contact_element);
-        } else if (contact_element.hasClass("chat-history-icon")) {
-            this.handle_chat_history_icon_click();
         }
     }
 }
@@ -201,12 +198,6 @@ handle_instagram_icon_click(contact_element) {
   const platform = "Instagram";
 
   this.check_if_contact_has_chat(this.profile.user_email, contact, platform);
-}
-
-handle_chat_history_icon_click() {
-    frappe.set_route("chat-history", {
-        contact: this.profile.contact
-    });
 }
 
 
