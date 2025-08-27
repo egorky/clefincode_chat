@@ -114,6 +114,7 @@ def create_redes_sociales_workspace():
     frappe.get_doc({
         "doctype": "Workspace",
         "label": "Redes Sociales",
+        "title": "Redes Sociales",
         "module": "ClefinCode Chat",
         "public": 1,
         "is_standard": 1,
