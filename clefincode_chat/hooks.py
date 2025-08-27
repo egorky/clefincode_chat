@@ -235,3 +235,7 @@ sounds = [
 webhooks = [
     {"from_route": "/telegram/webhook", "to_method": "clefincode_chat.webhook.telegram_webhook"}
 ]
+
+website_route_rules = [
+	{"from_route": "/chat-history/<contact>", "to_route": "chat_history"},
+]

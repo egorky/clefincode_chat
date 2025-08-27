@@ -4528,3 +4528,32 @@ def check_if_chat_topic_exist(channel_id):
     
     # Return the result
     return {"results": [{"chat_topic": chat_topic_name if chat_topic_name else ""}]}
+
+@frappe.whitelist()
+def get_chat_history(contact):
+    # Get chat profile for the contact
+    chat_profile = frappe.get_value("ClefinCode Chat Profile", {"contact": contact}, "name")
+
+    if not chat_profile:
+        return []
+
+    # Get all chat channels for the profile with WhatsApp platform
+    channels = frappe.get_all(
+        "ClefinCode Chat Channel",
+        filters={"chat_profile": chat_profile, "platform": "ERPNext Chat WhatsApp"},
+        fields=["name"],
+    )
+    channel_names = [channel["name"] for channel in channels]
+
+    if not channel_names:
+        return []
+
+    # Get all chat messages for the channels
+    messages = frappe.get_all(
+        "ClefinCode Chat Message",
+        filters={"chat_channel": ["in", channel_names]},
+        fields=["sender", "content", "creation"],
+        order_by="creation asc",
+    )
+
+    return messages

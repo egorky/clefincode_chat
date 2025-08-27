@@ -1,0 +1,14 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container">
+    <h1>Chat History for {{ contact_name }}</h1>
+    <div id="chat-history-container">
+        <!-- Chat messages will be rendered here -->
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="/assets/clefincode_chat/js/chat_history.js"></script>
+{% endblock %}
