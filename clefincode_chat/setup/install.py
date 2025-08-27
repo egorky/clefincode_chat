@@ -111,63 +111,32 @@ def create_redes_sociales_workspace():
     if frappe.db.exists("Workspace", "Redes Sociales"):
         return
 
-    frappe.get_doc({
-        "doctype": "Workspace",
-        "label": "Redes Sociales",
-        "title": "Redes Sociales",
-        "module": "ClefinCode Chat",
-        "public": 1,
-        "is_standard": 1,
-        "sequence_id": 100,
-        "links": [
-            {
-                "label": "Chat Settings",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode Chat Settings"
-            },
-            {
-                "label": "WhatsApp Integration",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode WhatsApp Integration"
-            },
-            {
-                "label": "WhatsApp Profiles",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode WhatsApp Profile"
-            },
-            {
-                "label": "WhatsApp Templates",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode WhatsApp Template"
-            },
-            {
-                "label": "Telegram Integration",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode Telegram Integration"
-            },
-            {
-                "label": "Instagram Integration",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode Instagram Integration"
-            },
-            {
-                "label": "Facebook Messenger Integration",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode Facebook Messenger Integration"
-            },
-            {
-                "label": "Chat Channels",
-                "type": "Link",
-                "link_type": "DocType",
-                "link_to": "ClefinCode Chat Channel"
-            }
-        ]
-    }).insert(ignore_permissions=True)
+    ws = frappe.new_doc("Workspace")
+    ws.label = "Redes Sociales"
+    ws.title = "Redes Sociales"
+    ws.module = "ClefinCode Chat"
+    ws.public = 1
+    ws.is_standard = 1
+    ws.sequence_id = 100
+
+    links = [
+        {"label": "Chat Settings", "link_to": "ClefinCode Chat Settings"},
+        {"label": "WhatsApp Integration", "link_to": "ClefinCode WhatsApp Integration"},
+        {"label": "WhatsApp Profiles", "link_to": "ClefinCode WhatsApp Profile"},
+        {"label": "WhatsApp Templates", "link_to": "ClefinCode WhatsApp Template"},
+        {"label": "Telegram Integration", "link_to": "ClefinCode Telegram Integration"},
+        {"label": "Instagram Integration", "link_to": "ClefinCode Instagram Integration"},
+        {"label": "Facebook Messenger Integration", "link_to": "ClefinCode Facebook Messenger Integration"},
+        {"label": "Chat Channels", "link_to": "ClefinCode Chat Channel"},
+    ]
+
+    for link in links:
+        ws.append("links", {
+            "label": link["label"],
+            "type": "Link",
+            "link_type": "DocType",
+            "link_to": link["link_to"]
+        })
+
+    ws.insert(ignore_permissions=True)
     frappe.db.commit()

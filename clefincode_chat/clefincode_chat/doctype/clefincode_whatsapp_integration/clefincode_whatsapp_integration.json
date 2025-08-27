@@ -29,7 +29,7 @@
    "fieldname": "webhook_url",
    "fieldtype": "Data",
    "label": "Webhook URL",
-   "description": "Enter the full webhook URL. This should be your site's URL followed by /api/method/clefincode_chat.webhook.whatsapp_webhook",
+   "description": "Enter the full webhook URL. This should be your site's URL followed by /api/method/clefincode_chat.webhook.handle",
    "read_only": 0
   }
  ],
