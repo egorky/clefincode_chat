@@ -18,6 +18,7 @@ def after_install():
     create_roles()   
     create_users_profiles()
     install_ffmpeg()
+    create_redes_sociales_workspace()
 # =================================================================================
 def create_roles():
     if not frappe.db.exists("Role", "Chat Support"):
@@ -106,3 +107,66 @@ def install_ffmpeg():
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 # =================================================================================
+def create_redes_sociales_workspace():
+    if frappe.db.exists("Workspace", "Redes Sociales"):
+        return
+
+    frappe.get_doc({
+        "doctype": "Workspace",
+        "label": "Redes Sociales",
+        "module": "ClefinCode Chat",
+        "public": 1,
+        "is_standard": 1,
+        "sequence_id": 100,
+        "links": [
+            {
+                "label": "Chat Settings",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode Chat Settings"
+            },
+            {
+                "label": "WhatsApp Integration",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode WhatsApp Integration"
+            },
+            {
+                "label": "WhatsApp Profiles",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode WhatsApp Profile"
+            },
+            {
+                "label": "WhatsApp Templates",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode WhatsApp Template"
+            },
+            {
+                "label": "Telegram Integration",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode Telegram Integration"
+            },
+            {
+                "label": "Instagram Integration",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode Instagram Integration"
+            },
+            {
+                "label": "Facebook Messenger Integration",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode Facebook Messenger Integration"
+            },
+            {
+                "label": "Chat Channels",
+                "type": "Link",
+                "link_type": "DocType",
+                "link_to": "ClefinCode Chat Channel"
+            }
+        ]
+    }).insert(ignore_permissions=True)
+    frappe.db.commit()

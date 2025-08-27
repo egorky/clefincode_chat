@@ -7,7 +7,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "base_url",
+  "webhook_url",
   "access_token",
   "webhook_verify_token"
  ],
@@ -26,11 +26,11 @@
    "mandatory_depends_on": "eval:doc.enable == 1"
   },
   {
-   "fieldname": "base_url",
+   "fieldname": "webhook_url",
    "fieldtype": "Data",
-   "hidden": 0,
    "label": "Webhook URL",
-   "read_only": 1
+   "description": "Enter the full webhook URL. This should be your site's URL followed by /api/method/clefincode_chat.webhook.whatsapp_webhook",
+   "read_only": 0
   }
  ],
  "index_web_pages_for_search": 1,
