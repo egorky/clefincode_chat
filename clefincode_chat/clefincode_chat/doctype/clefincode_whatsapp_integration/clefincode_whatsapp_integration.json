@@ -28,8 +28,9 @@
   {
    "fieldname": "base_url",
    "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Base URL"
+   "hidden": 0,
+   "label": "Webhook URL",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
