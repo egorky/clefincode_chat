@@ -102,7 +102,6 @@ def create_users_profiles():
 # =================================================================================
 def install_ffmpeg():
     try:
-        subprocess.run(["sudo", "apt", "update", "--fix-missing" , "-y",], check=True)
         subprocess.run(["sudo", "apt", "install", "ffmpeg", "--fix-missing" , "-y"], check=True)
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")

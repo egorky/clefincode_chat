@@ -154,25 +154,9 @@
    "options": "ClefinCode WhatsApp Template"
   },
   {
-   "depends_on": "eval: doc.__islocal",
-   "description": "Template names must use only lowercase letters and underscores.",
-   "fieldname": "meta_template_name",
-   "fieldtype": "Data",
-   "label": "Meta Template Name",
-   "mandatory_depends_on": "eval: doc.__islocal"
-  },
-  {
    "fieldname": "confirm_message_template_section",
    "fieldtype": "Section Break",
    "label": "Confirm Message Template"
-  },
-  {
-   "default": "You have a pending message. Would you like to view\u00a0it\u00a0now?",
-   "depends_on": "eval: doc.__islocal",
-   "fieldname": "template_content",
-   "fieldtype": "Text",
-   "label": "Template Content",
-   "mandatory_depends_on": "eval: doc.__islocal"
   }
  ],
  "index_web_pages_for_search": 1,

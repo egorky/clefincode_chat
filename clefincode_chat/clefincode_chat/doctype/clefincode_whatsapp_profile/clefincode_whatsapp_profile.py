@@ -12,22 +12,6 @@ class ClefinCodeWhatsAppProfile(Document):
 			for user in self.authorized_users:
 				get_whatsapp_numbers_for_profile(self.name, user.user)
 	
-	def after_insert(self):				
-		self.create_whatsapp_template()
-	
-	def create_whatsapp_template(self):
-		doc = frappe.get_doc({
-			"doctype" : "ClefinCode WhatsApp Template",
-			"whatsapp_profile": self.name,
-			"template_name": f"{self.business_account_id}_confirm_message",
-			"meta_template_name": self.meta_template_name,
-			"category": "Utility",
-			"body": self.template_content,
-			"buttons": [{"type" : "Custom" , "button_text" : "Yes" }, {"type" : "Custom" , "button_text" : "No" } ],
-		}).insert(ignore_permissions = True)
-		doc.submit()
-		self.message_template = doc.name
-		self.save()
 
 def get_whatsapp_numbers_for_profile(doc_name, user):
 	whatsapp_numbers_list = []
